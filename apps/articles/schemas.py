@@ -6,7 +6,7 @@ from typing import List
 
 
 class ArticlesSchemas(BaseModel):
-    title: str
+    articleTitle: str
     thumbnail_url: str
-    tags: List
+    tags: List[str]
     content: str
