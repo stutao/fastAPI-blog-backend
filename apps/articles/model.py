@@ -1,6 +1,8 @@
 # -*- coding:utf-8 -*-
-from sqlalchemy import Column, Integer, String, Text
+from sqlalchemy import Column, Integer, String, Text,ForeignKey
+from sqlalchemy.orm import relationship
 from apps import Base
+
 
 
 class Articles(Base):
@@ -10,3 +12,6 @@ class Articles(Base):
     article_name = Column(String)
     thumbnail_url = Column(String)
     content = Column(Text)
+    author_id = Column(Integer,ForeignKey("users.id"))
+
+    author = relationship('Users',back_populates='articles')

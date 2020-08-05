@@ -2,24 +2,33 @@
 import os
 
 import shortuuid
-from fastapi import UploadFile, File
+from fastapi import UploadFile, File, Depends
+from sqlalchemy.orm import Session
 
 from apps import router
 from settings import ROOT_PATH, BASE_URL
 
 from apps.articles.schemas import ArticlesSchemas
 
+from apps.articles.model import Articles
+
+from .article_crud import get_articles_by_user_id
+from apps.commons.db_session import get_db
+
 
 # 获取文章 携带user
 @router.get("/article/list")
-async def get_article_list():
-    pass
+async def get_article_list(db: Session = Depends(get_db)):
+    articles = get_articles_by_user_id(db)
+    for article in articles:
+        print(article.article_name)
+    return {'code': 1001, "msg": '完事'}
 
 
 # 创建文章 携带user
 @router.post("/article/create")
-async def create_article(items: ArticlesSchemas):
-    print(items)
+async def create_article(article_items: ArticlesSchemas):
+    pass
 
 
 # 通过id修改文章内容
