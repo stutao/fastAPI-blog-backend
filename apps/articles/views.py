@@ -18,10 +18,11 @@ from apps.commons.db_session import get_db
 
 # 获取文章 携带user
 @router.get("/article/list")
-async def get_article_list(db: Session = Depends(get_db)):
-    articles = get_articles_by_user_id(db)
-    for article in articles:
-        print(article.article_name)
+async def get_article_list(db: Session = Depends(get_db), user_id: int = None):
+    if user_id:
+        articles = get_articles_by_user_id(db, user_id)
+        for article in articles:
+            print(article.article_name)
     return {'code': 1001, "msg": '完事'}
 
 
