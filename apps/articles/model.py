@@ -11,6 +11,8 @@ class Articles(Base):
     article_name = Column(String)
     thumbnail_url = Column(String)
     content = Column(Text)
+    # 还有点赞量,阅读量,还可以加收藏量
+    # 加一个is_active 表示删除,这样后面想恢复也是可以的呀.
     author_id = Column(Integer, ForeignKey("users.id"))
 
     author = relationship('Users', back_populates='articles')

@@ -22,7 +22,7 @@ async def get_article_list(db: Session = Depends(get_db), user_id: int = None):
     if user_id:
         articles = get_articles_by_user_id(db, user_id)
         for article in articles:
-            print(article.article_name)
+            print(article)
     return {'code': 1001, "msg": '完事'}
 
 
