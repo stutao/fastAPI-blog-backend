@@ -2,11 +2,14 @@
 
 # 写数据库字段检验
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 
 
 class ArticlesSchemas(BaseModel):
-    articleTitle: str
-    thumbnail_url: str
-    tags: List[str]
+    title: str
+    thumbnail: Optional[str] = None
+    tags: List[str] = []
     content: str
+
+    class Config:
+        orm_mode = True
