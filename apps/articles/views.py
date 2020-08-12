@@ -2,7 +2,7 @@
 import os
 
 import shortuuid
-from fastapi import UploadFile, File, Depends
+from fastapi import UploadFile, File, Depends, Path
 from sqlalchemy.orm import Session
 
 from apps import router
@@ -14,9 +14,10 @@ from apps.commons.db_session import get_db
 
 # 获取文章 携带user
 @router.get("/article/{article_id}")
-async def get_article_detail(db: Session = Depends(get_db),article_id:int):
-    details = article_crud.get_aritles_by_id(db,article_id)
-    return {'code': 1001, "msg": '完事'}
+async def get_article_detail(db: Session = Depends(get_db),
+                             article_id: int = Path(..., title='The ID of the article to get details')):
+    details = article_crud.get_aritles_by_id(db, article_id)
+    return {'code': 1001, "msg": '完事', "data": details}
 
 
 # 创建文章 携带user

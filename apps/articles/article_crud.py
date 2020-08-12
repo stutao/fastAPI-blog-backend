@@ -10,7 +10,7 @@ def get_articles_by_user_id(db: Session, user_id: str):
 
 
 def get_aritles_by_id(db:Session,artilce_id:int):
-    pass
+    return db.query(Articles).filter_by(id=artilce_id).first()
 
 
 def get_articles_from_fuzzy_search():
