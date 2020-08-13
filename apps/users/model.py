@@ -9,8 +9,9 @@ class Users(Base):
     __tablename__ = 'users'
 
     uuid = Column(String, primary_key=True)
-    name = Column(String)
-    avatar = Column(String)
+    name = Column(String, unique=True, index=True)
+    email = Column(String, unique=True, index=True)
+    avatar = Column(String, nullable=True)
     nick_name = Column(String, nullable=True)
     password_hash = Column(String)
     is_active = Column(Boolean, default=False)
