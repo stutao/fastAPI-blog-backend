@@ -1,5 +1,3 @@
-from hashlib import new
-from shortuuid.main import uuid
 from sqlalchemy.orm import Session
 from .schemas import UserAchemas
 from apps.users.model import Users
